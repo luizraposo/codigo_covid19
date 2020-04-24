@@ -16,42 +16,62 @@ covid = requisicao()
 
 
 def arquivo(covid):
+
     with open('covid19.json','w') as f:
+
         json.dump(covid,f)
 
+
 def carregar_covid(arquivo):
+
     with open('covid19.json', 'r') as f:
+
         return json.load(f)
 
 covid = (carregar_covid('covid19.json'))
 
 
+
 def time(covid):
-    time_ = {'lastUpdatedAtSource':covid["lastUpdatedAtSource"]}
+
+    time_ = f' lastUpdatedAtSource: {covid["lastUpdatedAtSource"]}'
+
     return time_
 
 
 def total(covid):
-    total_ = {'infectados':covid["infected"],'mortos':covid["deceased"]}
+    total_ = {'total' :
+                  {'infectados':covid["infected"],
+                   'mortos':covid["deceased"]}
+              }
     return total_
 
 
 estados = {}
 evento = {}
 for infectados in covid.get('infectedByRegion', dict()):
+
+
     estados[infectados.get('state')] = {}
+
     estados[infectados.get('state')]['infectados'] = infectados.get('count')
-evento['Totais'] = estados
+
+evento['estados'] = estados
 
 for mortes in covid.get('deceasedByRegion', dict()):
+
     estados[mortes.get('state')]['mortes'] = mortes.get('count')
 
+
 def sourceUrl(covid):
-    sourceUrl_ = {'sourceUrl':covid["sourceUrl"]}
+
+    sourceUrl_ = {'Url':covid["sourceUrl"]}
+
     return sourceUrl_
 
 
 covid19 = []
+
 covid19.append(time(covid))
 covid19.append(total(covid))
 covid19.append(evento)
