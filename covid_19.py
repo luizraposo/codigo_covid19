@@ -15,20 +15,20 @@ covid = requisicao()
 
 
 
-def arquivo(covid):
+#def arquivo(covid):
 
-    with open('covid19.json','w') as f:
+ #   with open('covid19.json','w') as f:
 
-        json.dump(covid,f)
+ #       json.dump(covid,f)
 
 
-def carregar_covid(arquivo):
+#def carregar_covid(arquivo):
 
-    with open('covid19.json', 'r') as f:
+#   with open('covid19.json', 'r') as f:
 
-        return json.load(f)
+#        return json.load(f)
 
-covid = (carregar_covid('covid19.json'))
+#covid = (carregar_covid('covid19.json'))
 
 
 
