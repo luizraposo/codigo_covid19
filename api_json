@@ -1,0 +1,12 @@
+import requests
+
+req = None
+
+def requisicao(url):
+    try:
+        req = requests.get(url)
+        tst = req.json()
+        return tst
+    except:
+        print('Erro na conexão')
+        return None
