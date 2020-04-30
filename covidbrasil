@@ -1,0 +1,11 @@
+import api.url_pd_csv as api
+
+df = api.requisicao(url='https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv')
+
+countries = ['Brazil']
+df = df[df['Country'].isin(countries)]
+
+
+df['Cases'] = df[['Confirmed', 'Recovered', 'Deaths']].sum(axis=1)
+
+print(df)
